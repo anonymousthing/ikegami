@@ -79,25 +79,30 @@ module.exports = {
       'vue$': 'vue/dist/vue.esm.js',
       '@': path.resolve('.')
     },
+    fallback: {
+      setImmediate: false,
+      dgram: false,
+      fs: false,
+      net: false,
+      tls: false,
+      child_process: false
+    },
     extensions: ['*', '.js', '.vue', '.json']
   },
   devServer: {
     hot: true,
-    // noInfo: true,
-    inline: true,
-    overlay: true,
-    disableHostCheck: true,
-    historyApiFallback: true,
-    index: 'index.html'
+    historyApiFallback: true
   },
   performance: {
     hints: false
   },
-  devtool: 'cheap-module-eval-source-map',
+  optimization: {
+    moduleIds: 'named',
+  },
+  devtool: 'eval-cheap-module-source-map',
   plugins: [
 //  new BundleAnalyzerPlugin(),
     new webpack.EnvironmentPlugin(['NODE_ENV']),
-    new webpack.NamedModulesPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin({
       filename: 'index.html',
@@ -110,14 +115,6 @@ module.exports = {
       inline: 'index.js'
     })
   ],
-  node: {
-    setImmediate: false,
-    dgram: 'empty',
-    fs: 'empty',
-    net: 'empty',
-    tls: 'empty',
-    child_process: 'empty'
-  }
 }
 
 if(process.env.NODE_ENV === 'production') {

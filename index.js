@@ -31,7 +31,7 @@ const vm = window.rootvm = new Vue({
 })
 
 
-if(process.env.NODE_ENV === 'development') {
-  window._dummy = () => layer.emit('data', dummy)
-  window._dummy()
-}
+// if(process.env.NODE_ENV === 'development') {
+//   window._dummy = () => layer.emit('data', dummy)
+//   window._dummy()
+// }
